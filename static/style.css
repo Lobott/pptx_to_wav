@@ -1,0 +1,365 @@
+/*
+Nel caso servisse
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+*/
+
+:root {
+    --imperial-red: #e63737;
+    --fire-brick: #b12525;
+    --ppt-orange: #c13b1b;
+    --ivory: #fffff0;
+    --cream: #fffed4;
+    --vanilla: #ecebb0;
+    --night: #0f0f0f;
+    --azure: #007bff;
+    --sapphire: #0056b3;
+}
+
+* {
+    overflow: hidden;
+    font-family: "Russo One";
+}
+
+.hidden {
+    display: none;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--night);
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 600px;
+    width: 900px;
+    max-height: fit-content;
+    margin: 0 auto;
+    background: var(--ivory);
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position:fixed;
+    left: -10%;
+    rotate: 270deg;
+}
+
+h1 {
+    color: var(--ivory);
+    font-size: 5rem;
+}
+
+.spin {
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    margin: 1rem 1rem 0 0;
+    animation: rotation 5s infinite;
+    animation-fill-mode: forwards;
+}
+
+.side1 {
+    width: 100%;
+    height: 50%;
+}
+
+.side1:before {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    left: 0;
+    background: linear-gradient(270deg, rgba(237, 108, 71) 0%, rgba(193, 59, 27, 1) 100%);
+    border-radius: 0 90% 0 0;
+}
+
+.side1:after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    right: 0;
+    background: linear-gradient(270deg, rgba(237, 108, 71) 0%, rgba(193, 59, 27, 1) 100%);
+    border-radius: 0 0 90% 0;
+}
+
+.side2 {
+    width: 100%;
+    height: 50%;
+}
+
+.side2:before {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    left: 0;
+    background: linear-gradient(270deg, rgba(237, 108, 71) 0%, rgba(193, 59, 27, 1) 100%);
+    border-radius: 90% 0 0 0;
+}
+
+.side2:after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    right: 0;
+    background: linear-gradient(270deg, rgba(237, 108, 71) 0%, rgba(193, 59, 27, 1) 100%);
+    border-radius: 0 0 0 90%;
+}
+
+.side1:after, .side1:before,
+.side2:after, .side2:before {
+    animation: changeColor 5s infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotateZ(0deg);
+    }
+    12.5% {
+        transform: rotateZ(90deg);
+    }
+    25% {
+        transform: rotateZ(90deg);
+    }
+    37.5% {
+        transform: rotateZ(180deg);
+    }
+    50% {
+        transform: rotateZ(180deg);
+    }
+    62.5% {
+        transform: rotateZ(270deg);
+    }
+    75% {
+        transform: rotateZ(270deg);
+    }
+    87.5% {
+        transform: rotateZ(360deg);
+    }
+    100% {
+        transform: rotateZ(360deg);
+    }
+}
+/* background: linear-gradient(270deg, rgba(0, 123, 255) 0%, rgba(0, 86, 179) 100%); */
+@keyframes changeColor {
+    25% {
+        background: linear-gradient(270deg, rgba(0, 123, 255) 0%, rgba(0, 86, 179) 100%);
+    }
+    50% {
+        background: linear-gradient(270deg, rgba(237, 108, 71) 0%, rgba(193, 59, 27, 1) 100%);
+    }
+    75% {
+        background: linear-gradient(270deg, rgba(0, 123, 255) 0%, rgba(0, 86, 179) 100%);
+    }
+    100% {
+        background: linear-gradient(270deg, rgba(237, 108, 71) 0%, rgba(193, 59, 27, 1) 100%);
+    }
+}
+
+#pptx-dot {
+    color: var(--ppt-orange);
+}
+
+#wav-dot {
+    color: var(--azure);
+}
+
+form {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+input[type="file"] {
+    margin-bottom: 20px;
+    display: none;
+}
+
+audio {
+    width: 100%;
+    margin-top: 20px;
+}
+
+button {
+    border: 1px solid var(--night);
+    background-color: transparent;
+    color: var(--night);
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 15px;
+    cursor: pointer;
+    border: 1px solid var(--night);
+    color: var(--night);
+    font-size: 18px;
+}
+
+#file-name {
+    margin-left: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+/* loading screen. per lo spinner, https://uiverse.io/satyamchaudharydev/afraid-horse-51*/
+
+.loading-screen {
+    max-width: 600px;
+    width: 900px;
+    max-height: fit-content;
+    margin: 0;
+    background: var(--ivory);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--night);
+}
+
+.spinner {
+    --size: 30px;
+    --first-block-clr: linear-gradient(270deg, rgba(237, 108, 71) 0%, rgba(193, 59, 27, 1) 100%);
+    --second-block-clr: linear-gradient(270deg, rgba(193, 59, 27, 1) 0%, rgba(237, 108, 71)100%);
+    --clr: #111;
+    width: 100px;
+    height: 100px;
+    position: relative;
+}
+
+.spinner::after,.spinner::before {
+    box-sizing: border-box;
+    position: absolute;
+    content: "";
+    width: var(--size);
+    height: var(--size);
+    top: 50%;
+    animation: up 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
+    left: 50%;
+    background: var(--first-block-clr);
+}
+
+.spinner::after {
+    background: var(--second-block-clr);
+    top: calc(50% - var(--size));
+    left: calc(50% - var(--size));
+    animation: down 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
+}
+
+@keyframes down {
+    0%, 100% {
+     transform: none;
+    }
+   
+    25% {
+     transform: translateX(100%);
+    }
+   
+    50% {
+     transform: translateX(100%) translateY(100%);
+    }
+   
+    75% {
+     transform: translateY(100%);
+    }
+}
+
+@keyframes up {
+    0%, 100% {
+     transform: none;
+    }
+   
+    25% {
+     transform: translateX(-100%);
+    }
+   
+    50% {
+     transform: translateX(-100%) translateY(-100%);
+    }
+   
+    75% {
+     transform: translateY(-100%);
+    }
+}
+   
+
+/* evita l'hover da mobile */
+
+@media (hover: hover) {
+    button:hover {
+        background-color: var(--azure);
+    }
+
+    .custom-file-upload:hover {
+        background-color: var(--ppt-orange);
+    }
+}
+
+/* quando lo schermo non è enorme */
+
+@media only screen and (max-width: 1150px) {
+    .spin {
+        display: none;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 1.7rem;
+        rotate: 0deg;
+        position: unset;
+    }
+
+    h1 {
+        color: var(--ivory);
+    }
+
+    .container {
+        max-width: calc(100vw - 40px); /* larghezza dello schermo meno un po’ di margine */
+        padding: 10px;
+    }
+  }
+
+/* quando siamo da telefono */
+
+@media only screen and (max-width: 512px) {
+    h1 {
+        font-size: 3rem;
+    }
+    body {
+        height: 50vh;
+        padding-top: 3rem;
+    }
+}

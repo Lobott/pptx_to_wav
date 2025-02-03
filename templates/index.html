@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Generatore Audio da PPTX</title>
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+
+    <header>
+        <h1><span id="pptx-dot">.</span>pptx to <span id="wav-dot">.</span>wav</h1>
+    </header>
+
+    <div class="spin">
+        <div class="side1"></div>
+        <div class="side2"></div>
+    </div>
+
+    <div class="container" id="container" >
+        <form id="upload-form" method="POST" enctype="multipart/form-data">
+            <label for="file-input" class="custom-file-upload">seleziona un file .pptx</label>
+            <input type="file" id="file-input" name="pptx" accept=".pptx" required>
+            <span id="file-name">nessun file selezionato</span>
+            <button type="submit" id="submit">genera .wav</button>
+        </form>
+
+        {% if audio_file %} 
+            <h2>audio generato</h2>
+            <audio controls>
+                <source src="{{ url_for('download_file', filename=audio_file) }}" type="audio/mp3">
+                il tuo browser non supporta il tag audio
+            </audio>
+            <br>
+            <a href="{{ url_for('download_file', filename=audio_file) }}" download>scarica audio</a>
+        {% endif %}
+    </div>
+
+    <div class="hidden" id="loading-screen">
+        <p id="status-text">caricamento in corso...</p>
+        <div class="spinner"></div>
+    </div>
+
+    <iframe id="log-frame" src="/stream-log" style="display:none;"></iframe>
+
+</body>
+</html>
