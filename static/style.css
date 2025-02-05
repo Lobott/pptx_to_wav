@@ -211,6 +211,10 @@ button {
     font-size: 16px;
 }
 
+#genera-nuovo {
+    margin-top: 20px;
+}
+
 .custom-file-upload {
     display: inline-block;
     padding: 10px 15px;
@@ -317,6 +321,11 @@ button {
 
     .custom-file-upload:hover {
         background-color: var(--ppt-orange);
+    }
+
+    #genera-nuovo:hover {
+        background-color: var(--night);
+        color: var(--ivory);
     }
 }
 

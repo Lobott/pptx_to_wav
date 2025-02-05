@@ -6,11 +6,15 @@ document.getElementById('file-input').addEventListener('change', function() {
 const form = document.getElementById('upload-form')
 const container = document.getElementById('container')
 const loadingScreen = document.getElementById('loading-screen')
+const generaNuovo = document.getElementById('genera-nuovo')
 
 form.addEventListener('submit', () => {
     container.style.display = 'none'
     loadingScreen.classList.add('loading-screen')
 })
 
+generaNuovo.addEventListener('click', () => {
+    window.history.back()
+})
 
 
