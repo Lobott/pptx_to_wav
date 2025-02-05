@@ -8,18 +8,18 @@ import soundfile as sf
 from pydub import AudioSegment
 
 app = Flask(__name__)
-app.secret_key = "supersecretkey"  # Necessario per le sessioni
+app.secret_key = "supersecretkey"  # necessario per le sessioni
 
-# Percorsi per i file caricati e l'audio finale
+# percorsi per i file caricati e l'audio finale
 BASE_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = BASE_FOLDER
 app.config['AUDIO_FOLDER'] = 'static/audio'
 
-# Crea le cartelle se non esistono
+# crea le cartelle se non esistono
 os.makedirs(BASE_FOLDER, exist_ok=True)
 os.makedirs(app.config['AUDIO_FOLDER'], exist_ok=True)
 
-# Estrae testo dal .pptx
+# estrae testo dal .pptx
 def estrai_testo_da_pptx(pptx_path):
     prs = Presentation(pptx_path)
     testo_slides = []
@@ -31,12 +31,12 @@ def estrai_testo_da_pptx(pptx_path):
         testo_slides.append(" ".join(testo_singola_slide))
     return testo_slides
 
-# Trasforma il testo in audio (ma .mp3)
+# trasforma il testo in audio (ma .mp3)
 def trasforma_testo_in_audio(testo, output_audio):
     tts = gTTS(testo, lang="it")
     tts.save(output_audio)
 
-# Converte .mp3 in .wav usando librosa
+# converte .mp3 in .wav usando librosa
 
 def converti_da_mp3_a_wav(file_mp3):
     y, sr = librosa.load(file_mp3, sr=None)
@@ -45,13 +45,13 @@ def converti_da_mp3_a_wav(file_mp3):
     os.remove(file_mp3)  # Rimuove il file .mp3 temporaneo
     return file_wav
 
-# Unisce file audio .wav
+# unisce file audio .wav
 def unisci_file_audio(files_audio, output_audio):
     file_uniti = AudioSegment.empty()
     for file in files_audio:
         audio_segment = AudioSegment.from_wav(file)
         file_uniti += audio_segment
-        os.remove(file)  # Rimuove i file .wav temporanei
+        os.remove(file)  # rimuove i file .wav temporanei
     file_uniti.export(output_audio, format="wav")
 
 @app.route("/", methods=["GET", "POST"])

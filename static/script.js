@@ -6,9 +6,6 @@ document.getElementById('file-input').addEventListener('change', function() {
 const form = document.getElementById('upload-form')
 const container = document.getElementById('container')
 const loadingScreen = document.getElementById('loading-screen')
-const logFrame = document.getElementById('log-frame')
-const statusText = document.getElementById('status-text')
-
 
 form.addEventListener('submit', () => {
     container.style.display = 'none'
